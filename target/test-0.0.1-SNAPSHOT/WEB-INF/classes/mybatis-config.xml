@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+  <configuration>
+	    <settings>
+		    <!-- 如：数据库列名CPU_BRAND和pojo属性名cpuBrand兼容了 -->
+		    <setting name="mapUnderscoreToCamelCase" value="true" />
+	  	</settings>
+ 		<typeAliases><!--数据库列名，可以对应pojo属性名 -->
+ 			<package name="test1.model"/>
+ 		</typeAliases> 
+ 		<plugins><!-- 分页查询 -->
+ 			<plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
+ 		</plugins>
+  </configuration>

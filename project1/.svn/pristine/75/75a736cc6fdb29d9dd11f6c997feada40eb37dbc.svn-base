@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="test1.mapper.TestMapper">
+  	<select id="finAll" resultType="test1.model.TestModel">
+  		SELECT * FROM `test`
+  	</select>
+  	
+  	<select id="finOne" resultType="test1.model.TestModel">
+  		SELECT * FROM `test` WHERE id=#{id}
+  	</select>	
+  	<update id="update">
+  		UPDATE `test` SET  NAME=#{name},age=#{age} where id=#{id}
+  	</update>
+  	<insert id="add">
+  		 INSERT INTO `test` VALUES (#{id},#{name},#{age});
+  	</insert>
+  	<delete id="delete">
+  		DELETE FROM `test` WHERE id=#{id}
+  	</delete>
+  	<select id="findPages" resultType="test1.model.TestModel">
+  		SELECT * FROM test  LIMIT #{startPos},4
+  	</select>
+  	<select id="finCount" resultType="Integer">
+  		SELECT COUNT(id)FROM  test
+  	</select>
+  	<delete id="delUserById">
+    DELETE FROM `USER` WHERE id in
+    <foreach collection="array" item="id" open="(" separator="," close=")">
+    <!-- collection表示类型，删除是数组,新增是集合,"id"是用户ID(自定义变量名),open表示左括号,separator是逗号,close是右括号 -->
+            #{ids}
+        </foreach>
+    </delete>
+    <select id="fin" resultType="test1.model.TestModel">
+    	SELECT * from test where `name` LIKE "%"#{name}"%"
+    </select>
+	<select id="getById" resultType="test1.model.TestModel">
+			SELECT * FROM `test` WHERE id=#{id}
+	</select>    
+  </mapper>
